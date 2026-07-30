@@ -41,7 +41,7 @@ A modern, on-demand Chrome Extension (Manifest V3) designed for Adobe Experience
 ## 📖 Usage Guide
 
 1. **Navigate to an AEM Page**:
-   Open any webpage you want to inspect (for example, `https://example.com/adverse-reactions/`).
+   Open any webpage you want to inspect (for example, `https://example.com/content/site/page/`).
 2. **Click the Extension Icon**:
    Click the **AEM Model JSON Checker** icon in your Chrome toolbar.
 3. **Inspect the Result**:

@@ -15,8 +15,8 @@ function generateCandidateUrls(rawUrl) {
 
     const candidates = [];
 
-    // 1) If URL ends with a trailing slash e.g. /adverse-reactions/
-    //    Example: https://example.com/adverse-reactions/ -> https://example.com/adverse-reactions/.model.json
+    // 1) If URL ends with a trailing slash e.g. /content/site/page/
+    //    Example: https://example.com/content/site/page/ -> https://example.com/content/site/page/.model.json
     if (path.endsWith('/')) {
       candidates.push(`${origin}${path}.model.json`);
       const trimmed = path.slice(0, -1);
@@ -24,13 +24,13 @@ function generateCandidateUrls(rawUrl) {
         candidates.push(`${origin}${trimmed}.model.json`);
       }
     }
-    // 2) If URL ends with .html e.g. /adverse-reactions.html
+    // 2) If URL ends with .html e.g. /content/site/page.html
     else if (path.endsWith('.html')) {
       const base = path.slice(0, -5);
       candidates.push(`${origin}${base}.model.json`);
       candidates.push(`${origin}${base}/.model.json`);
     }
-    // 3) If URL has no trailing slash or extension e.g. /adverse-reactions
+    // 3) If URL has no trailing slash or extension e.g. /content/site/page
     else {
       candidates.push(`${origin}${path}.model.json`);
       candidates.push(`${origin}${path}/.model.json`);
