@@ -16,7 +16,7 @@ function generateCandidateUrls(rawUrl) {
     const candidates = [];
 
     // 1) If URL ends with a trailing slash e.g. /adverse-reactions/
-    //    Example: https://www.anorohcp.com/adverse-reactions/ -> https://www.anorohcp.com/adverse-reactions/.model.json
+    //    Example: https://example.com/adverse-reactions/ -> https://example.com/adverse-reactions/.model.json
     if (path.endsWith('/')) {
       candidates.push(`${origin}${path}.model.json`);
       const trimmed = path.slice(0, -1);
