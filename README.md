@@ -32,7 +32,7 @@ A modern, on-demand Chrome Extension (Manifest V3) designed for Adobe Experience
 3. Click the **Load unpacked** button in the top-left toolbar.
 4. Select the extension directory:
    ```
-   c:\Users\Jose Cuadra\projects\wen
+   <path-to-your-extension-folder>
    ```
 5. *(Optional)* Click the **Extensions puzzle piece** icon in Chrome's top toolbar and **Pin** 📌 **AEM Model JSON Checker** for one-click access.
 
