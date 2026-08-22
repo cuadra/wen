@@ -63,6 +63,22 @@
       </div>
     </section>
 
+    <!-- Clientlib Version Box (shown when root clientAppVersion is present) -->
+    <section id="clientlib-section" class="card url-section hidden">
+      <div class="section-label">
+        <span>CLIENTLIB VERSION</span>
+      </div>
+      <div class="url-input-group">
+        <input type="text" id="clientlib-input" class="url-input mono" readonly />
+        <button id="copy-clientlib-btn" class="action-btn small" title="Copy Clientlib version">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+    </section>
+
     <!-- Main State Container -->
     <main class="main-content">
       <!-- State 1: Loading -->
@@ -81,8 +97,8 @@
             </svg>
           </div>
           <div class="banner-text">
-            <strong>Model JSON Exists</strong>
-            <span>Successfully parsed response data</span>
+            <strong>Content Last Modified</strong>
+            <span>Model JSON found &amp; parsed successfully</span>
           </div>
           <span id="relative-time-badge" class="time-pill"></span>
         </div>

@@ -125,6 +125,15 @@ function findLastModifiedOccurrences(obj, path = 'root', results = []) {
 }
 
 /**
+ * Return the root-level `clientAppVersion` value if present, else null
+ */
+function getClientlibVersion(data) {
+  if (!data || typeof data !== 'object') return null;
+  if (!Object.prototype.hasOwnProperty.call(data, 'clientAppVersion')) return null;
+  return data.clientAppVersion;
+}
+
+/**
  * Helper to format relative time (e.g. "2 hours ago", "in 3 days")
  */
 function getRelativeTimeString(date) {
@@ -163,6 +172,9 @@ if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', async () => {
     const elements = {
       httpStatusBadge: document.getElementById('http-status-badge'),
+      clientlibSection: document.getElementById('clientlib-section'),
+      clientlibInput: document.getElementById('clientlib-input'),
+      copyClientlibBtn: document.getElementById('copy-clientlib-btn'),
       modelUrlInput: document.getElementById('model-url-input'),
       copyUrlBtn: document.getElementById('copy-url-btn'),
       openTabBtn: document.getElementById('open-tab-btn'),
@@ -209,6 +221,13 @@ if (typeof document !== 'undefined') {
       }
     });
 
+    elements.copyClientlibBtn.addEventListener('click', () => {
+      if (elements.clientlibInput.value) {
+        navigator.clipboard.writeText(elements.clientlibInput.value);
+        showToast('Clientlib version copied!');
+      }
+    });
+
     elements.copyRawBtn.addEventListener('click', () => {
       const rawText = elements.rawTimeDisplay.textContent;
       if (rawText && rawText !== '--') {
@@ -247,6 +266,7 @@ if (typeof document !== 'undefined') {
     async function init() {
       showState('loading');
       elements.httpStatusBadge.classList.add('hidden');
+      elements.clientlibSection.classList.add('hidden');
       elements.altUrlsContainer.classList.add('hidden');
 
       try {
@@ -291,6 +311,7 @@ if (typeof document !== 'undefined') {
       currentCandidateUrl = targetUrl;
       elements.modelUrlInput.value = targetUrl;
       showState('loading');
+      elements.clientlibSection.classList.add('hidden');
 
       let responseResult = null;
 
@@ -359,6 +380,13 @@ if (typeof document !== 'undefined') {
       }
 
       latestJsonData = responseResult.data;
+
+      // If a root-level clientAppVersion is present, surface it as "Clientlib"
+      const clientlibVersion = getClientlibVersion(latestJsonData);
+      if (clientlibVersion !== null && clientlibVersion !== undefined) {
+        elements.clientlibInput.value = String(clientlibVersion);
+        elements.clientlibSection.classList.remove('hidden');
+      }
 
       // Search recursively for lastModifiedDate
       const occurrences = findLastModifiedOccurrences(latestJsonData);
@@ -432,17 +460,14 @@ if (typeof document !== 'undefined') {
       });
 
       const dayFormatter = new Intl.DateTimeFormat(undefined, {
-        weekday: 'long',
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
+        weekday: 'long'
       });
 
       elements.localTimeDisplay.textContent = localFormatter.format(dateObj);
       elements.localSubDisplay.textContent = `${dayFormatter.format(dateObj)} (Local Time)`;
 
       // Relative time pill
-      elements.relativeTimeBadge.textContent = getRelativeTimeString(dateObj);
+      elements.relativeTimeBadge.textContent = `Modified ${getRelativeTimeString(dateObj)}`;
 
       // UTC Time
       const utcFormatted = dateObj.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
@@ -529,6 +554,7 @@ if (typeof module !== 'undefined' && module.exports) {
     generateCandidateUrls,
     findLastModifiedOccurrences,
     parseTimestamp,
-    getRelativeTimeString
+    getRelativeTimeString,
+    getClientlibVersion
   };
 }
