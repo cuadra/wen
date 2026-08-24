@@ -2,6 +2,8 @@
 
 A modern, on-demand Chrome Extension (Manifest V3) designed for Adobe Experience Manager (AEM) developers, QA testers, and content authors to instantly verify if a `.model.json` endpoint exists for the current webpage and convert timestamps like `1780045190002` into human-readable dates.
 
+<img width="390" height="601" alt="image" src="https://github.com/user-attachments/assets/5e85cc8c-0ada-426f-814d-8abb6aca5454" />
+
 ---
 
 ## ✨ Features
