@@ -169,6 +169,13 @@ function getRelativeTimeString(date) {
 
 // Ensure DOM logic only runs when in a browser environment
 if (typeof document !== 'undefined') {
+  // Close the popup when Esc is pressed
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.close();
+    }
+  });
+
   document.addEventListener('DOMContentLoaded', async () => {
     const elements = {
       httpStatusBadge: document.getElementById('http-status-badge'),

@@ -46,6 +46,7 @@ A modern, on-demand Chrome Extension (Manifest V3) designed for Adobe Experience
    Open any webpage you want to inspect (for example, `https://example.com/content/site/page/`).
 2. **Click the Extension Icon**:
    Click the **AEM Model JSON Checker** icon in your Chrome toolbar.
+   Or press **Alt+M** (**Ctrl+Shift+M** on macOS). Press **Esc** to close the popup. You can change the shortcut at `chrome://extensions/shortcuts`.
 3. **Inspect the Result**:
    - **If `.model.json` exists**: A vibrant green badge indicates success, and the primary `lastModifiedDate` is prominently displayed in local and relative time formats.
    - **Multiple Occurrences**: If the page has multiple modified timestamps across child components, click **All lastModifiedDate Occurrences** to view their full JSON paths (e.g., `root > :items > header > cq:lastModified`).

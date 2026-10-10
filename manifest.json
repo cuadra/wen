@@ -12,6 +12,15 @@
     },
     "default_title": "Check .model.json"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+M",
+        "mac": "MacCtrl+Shift+M"
+      },
+      "description": "Open AEM Model JSON Checker"
+    }
+  },
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
